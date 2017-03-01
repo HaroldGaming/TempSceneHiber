@@ -1,0 +1,5 @@
+Touch inputs, kun je ook mousebuttons input gebruiken voor double input.
+Input moet niet gedaan worden tijdens de button pressing.
+
+Dash kan een technical ding zijn. je kan sneller naar een zelfde kant dashen, maar de andere speler kan dan ook een bepaalde kant 
+dashing om je naar een muur te bregen. je kan niet tegen de muur dashen dus geen quick dashes die kant.
