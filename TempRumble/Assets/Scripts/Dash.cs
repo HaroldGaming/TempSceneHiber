@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Dash : MonoBehaviour {
 
-    public float dashTime, dashSpeed, rotateDelay, rayDistance;
+    public float dashTime, dashSpeed, rotateDelay, rayDistance, rotateSpeed, rotateCoolDown;
     private float time;
     private bool dashingRight, dashingLeft, rotating;
     private Transform target;
-    private RaycastHit hit;
+   // private RaycastHit hit;
     private string saveTag;
     
 
@@ -45,17 +45,23 @@ public class Dash : MonoBehaviour {
         }
 
         CheckForLookAt();
+        if (rotating){
+            Vector3 pos = target.position - transform.position;
+            var newRot = Quaternion.LookRotation(pos);
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotateSpeed);
+        }
+
 
     }
 
     void CheckForLookAt() {
-        if (Physics.Raycast(transform.position, Vector3.forward, out hit, rayDistance)) {
+        if (Physics.Raycast(transform.position, Vector3.forward, rayDistance)) {
             print("rayhit");
         }
         else {
             if (!rotating) {
                 print("rotating");
-                rotating = true;
+
                 StartCoroutine(Rotate());
                 
             }
@@ -64,11 +70,10 @@ public class Dash : MonoBehaviour {
 
     IEnumerator Rotate() {
         print("rotating");
+        rotating = true;
         yield return new WaitForSeconds(rotateDelay);
-        Vector3 relativePos = target.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        transform.rotation = rotation;
-        yield return new WaitForSeconds(1);
+
+        //yield return new WaitForSeconds(rotateCoolDown);
         rotating = false;
         StopCoroutine(Rotate());
     }
