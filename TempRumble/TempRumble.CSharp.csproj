@@ -70,6 +70,8 @@
     <Compile Include="Assets\Scripts\Bars.cs" />
     <Compile Include="Assets\Scripts\Dash.cs" />
     <Compile Include="Assets\Scripts\FightControll.cs" />
+    <Compile Include="Assets\Scripts\FistAnimations.cs" />
+    <Compile Include="Assets\Scripts\Fists.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

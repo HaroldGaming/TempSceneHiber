@@ -48,7 +48,7 @@ public class Dash : MonoBehaviour {
         if (rotating){
             Vector3 pos = target.position - transform.position;
             var newRot = Quaternion.LookRotation(pos);
-            transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotateSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotateSpeed * Time.deltaTime);
         }
 
 
@@ -57,25 +57,27 @@ public class Dash : MonoBehaviour {
     void CheckForLookAt() {
         if (Physics.Raycast(transform.position, Vector3.forward, rayDistance)) {
             print("rayhit");
+            //StopCoroutine(Rotate());
         }
         else {
             if (!rotating) {
-                print("rotating");
-
+                print("rotate");
                 StartCoroutine(Rotate());
-                
             }
+
         }
     }
 
     IEnumerator Rotate() {
         print("rotating");
-        rotating = true;
         yield return new WaitForSeconds(rotateDelay);
+        rotating = true;
 
-        //yield return new WaitForSeconds(rotateCoolDown);
+
+        yield return new WaitForSeconds(rotateCoolDown);
         rotating = false;
-        StopCoroutine(Rotate());
+
+        //StartCoroutine(Rotate());
     }
 
     public void Dasher(int leftRight) {
