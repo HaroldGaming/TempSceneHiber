@@ -14,11 +14,11 @@ public class Bars : MonoBehaviour {
 
     void Update() {// remove later, no update needed
         if (Input.GetButtonDown("Jump")) {//remove later, was for testing.
-            StartCoroutine(ChangeBar(500, 0));
+            StartCoroutine(ChangeBar(500, 300));
         }
 
         if (Input.GetButtonDown("Fire1")) {
-            StartCoroutine(ChangeBar(500, 276));
+            StartCoroutine(ChangeBar(500, 400));
         }
     }
 
