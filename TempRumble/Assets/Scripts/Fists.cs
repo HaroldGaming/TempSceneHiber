@@ -4,6 +4,7 @@ using System.Collections;
 public class Fists : MonoBehaviour {
 
     public GameObject[] moveToObjects;
+    public GameObject backObject;
 
 	void Start () {
 	
@@ -18,9 +19,10 @@ public class Fists : MonoBehaviour {
     }
 
 
+
     IEnumerator Attacking() {
         transform.position = moveToObjects[1].transform.position;
-        yield return new WaitForSeconds(0.5F);
+        yield return new WaitForSeconds(0.2F);
         transform.position = moveToObjects[0].transform.position;
     }
 }
