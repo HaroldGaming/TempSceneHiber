@@ -6,7 +6,7 @@ public class Dash : MonoBehaviour {
     public float dashTime, dashSpeed, rotateDelay, rayDistance, rotateSpeed, rotateCoolDown;
     private float time;
     private bool dashingRight, dashingLeft, rotating;
-    private Transform target;
+    public Transform target;
    // private RaycastHit hit;
     private string saveTag;
     
