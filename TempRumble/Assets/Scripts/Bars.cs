@@ -7,6 +7,8 @@ public class Bars : MonoBehaviour {
     public Image imageBar;
     public float fillSpeed;
     public float health, maxhealth;
+    private float saveDamage;
+    private bool alreadyMoving;
 
 
     void Start() {
@@ -23,13 +25,19 @@ public class Bars : MonoBehaviour {
     }
 
     public void GetDamage(float damage) {
-        health -= damage;
-        StartBar(maxhealth, health);
+        if (!alreadyMoving) {
+            health -= damage;
+            StartBar(maxhealth, health);
+        }
+        else {
+            saveDamage += damage;
+        }
     }
 
     public void StartBar(float maxAmount, float CurrentAmount) {//when you want to activate the bar changer start it by giving a value of the max amount (max health, max mana ect.) and the currentAmount ( current health, current mana ect.)
         StopCoroutine(ChangeBar(0, 0));
         StartCoroutine(ChangeBar(maxAmount, CurrentAmount));
+        alreadyMoving = true;
     }
 
     public IEnumerator ChangeBar(float maxAmount, float currentAmount) {
@@ -52,6 +60,9 @@ public class Bars : MonoBehaviour {
 
         if (currentFill == newFill) {
             StopCoroutine(ChangeBar(0, 0));
+            alreadyMoving = false;
+            GetDamage(saveDamage);
+            saveDamage = 0;
         }
         else {
             StartCoroutine(ChangeBar(maxAmount, currentAmount));
