@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{540F3822-BF2B-E239-27EC-710EB2007FAC}") = "TempRumble", "Assembly-CSharp.csproj", "{869E1CD4-64BD-30B8-0C30-CEA82D1B8D2D}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TempRumble.CSharp", "TempRumble.CSharp.csproj", "{53D054EE-E3B4-6690-14E3-3D2D63A2EC99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{869E1CD4-64BD-30B8-0C30-CEA82D1B8D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{869E1CD4-64BD-30B8-0C30-CEA82D1B8D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{869E1CD4-64BD-30B8-0C30-CEA82D1B8D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{869E1CD4-64BD-30B8-0C30-CEA82D1B8D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53D054EE-E3B4-6690-14E3-3D2D63A2EC99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53D054EE-E3B4-6690-14E3-3D2D63A2EC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53D054EE-E3B4-6690-14E3-3D2D63A2EC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53D054EE-E3B4-6690-14E3-3D2D63A2EC99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

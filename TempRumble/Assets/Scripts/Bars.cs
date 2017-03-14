@@ -9,6 +9,7 @@ public class Bars : MonoBehaviour {
     public float health, maxhealth;
     private float saveDamage;
     private bool alreadyMoving;
+    private int counter;
 
 
     void Start() {
@@ -19,53 +20,72 @@ public class Bars : MonoBehaviour {
     void Update() {// remove later, no update needed
 
         if (Input.GetButtonDown("Fire2")) {
-            StartCoroutine(ChangeBar(maxhealth, maxhealth));
+            StartCoroutine(ChangeBar(maxhealth, maxhealth, false));
             health = maxhealth;
         }
     }
 
     public void GetDamage(float damage) {
-        if (!alreadyMoving) {
+      //  if (!alreadyMoving) {
             health -= damage;
-            StartBar(maxhealth, health);
-        }
-        else {
-            saveDamage += damage;
-        }
+            StartBar(maxhealth, health, true);
+       // }
+        //else {
+           // saveDamage += damage;
+        //}
     }
 
-    public void StartBar(float maxAmount, float CurrentAmount) {//when you want to activate the bar changer start it by giving a value of the max amount (max health, max mana ect.) and the currentAmount ( current health, current mana ect.)
-        StopCoroutine(ChangeBar(0, 0));
-        StartCoroutine(ChangeBar(maxAmount, CurrentAmount));
+    public void StartBar(float maxAmount, float CurrentAmount, bool reduce) {//when you want to activate the bar changer start it by giving a value of the max amount (max health, max mana ect.) and the currentAmount ( current health, current mana ect.)
+        StopCoroutine(ChangeBar(0, 0, reduce));
+        StartCoroutine(ChangeBar(maxAmount, CurrentAmount, reduce));
         alreadyMoving = true;
     }
 
-    public IEnumerator ChangeBar(float maxAmount, float currentAmount) {
+    public IEnumerator ChangeBar(float maxAmount, float currentAmount, bool reduce) {
         float currentFill = imageBar.fillAmount;
         float newFill = 1 / maxAmount * currentAmount;
 
         newFill = Mathf.Round(newFill * 100F) / 100F;
 
-        if (newFill <= currentFill) {
+
+        if (reduce) {
             currentFill -= 0.05F * fillSpeed * Time.deltaTime;
         }
         else {
             currentFill += 0.05F * fillSpeed * Time.deltaTime;
         }
 
-        currentFill = Mathf.Round(currentFill * 100F) / 100F;
+        //currentFill = Mathf.Round(currentFill * 100F) / 100F;
+        print(currentFill);
+        print(newFill);
         imageBar.fillAmount = currentFill;
 
         yield return new WaitForSeconds(0);
 
-        if (currentFill == newFill) {
-            StopCoroutine(ChangeBar(0, 0));
-            alreadyMoving = false;
-            GetDamage(saveDamage);
-            saveDamage = 0;
+        if (reduce) {
+            if (newFill >= currentFill) {
+                StopCoroutine(ChangeBar(0, 0, reduce));
+                alreadyMoving = false;
+                //GetDamage(saveDamage);
+                saveDamage = 0;
+                counter = 0;
+            }
+            else {
+                StartCoroutine(ChangeBar(maxAmount, currentAmount, reduce));
+            }
         }
         else {
-            StartCoroutine(ChangeBar(maxAmount, currentAmount));
+            if (newFill <= currentFill) {
+                StopCoroutine(ChangeBar(0, 0, reduce));
+                alreadyMoving = false;
+                //GetDamage(saveDamage);
+                saveDamage = 0;
+                counter = 0;
+            }
+            else {
+                print(counter);
+                StartCoroutine(ChangeBar(maxAmount, currentAmount, reduce));
+            }
         }
     }
 

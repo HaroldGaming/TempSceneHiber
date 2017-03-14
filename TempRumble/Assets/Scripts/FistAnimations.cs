@@ -6,7 +6,7 @@ public class FistAnimations : MonoBehaviour {
     public GameObject[] fists;
     public bool charging, allowAttack;
     public int spinSpeed;
-    public float setAttackCoolDown, damage;
+    public float setAttackCoolDown, setGrabCooldDOwn, setDefendCoolDown, damage;
     private int fist;
     private float attackCoolDown, chargeDamage;
 
@@ -15,19 +15,26 @@ public class FistAnimations : MonoBehaviour {
         allowAttack = true;
     }
     void Update() {
-        if (Input.GetButton("Jump")) {
+        if (Input.GetButton("Fire1")) {
             allowAttack = false;
             ChargeAttack(true);
             charging = true;
             print("charging");
-            print(chargeDamage)
-;        }
+            //print(chargeDamage);
+        }
         else {
             if (charging) {
-                ChargeAttack(false);
                 charging = false;
+                ChargeAttack(false);            
+            }
+
+            if (Input.GetButtonDown("Fire1")) {
+                Attack(damage);
+                print("Attack");
             }
         }
+
+
 
         if(attackCoolDown >= 0) {
             attackCoolDown -= Time.deltaTime;
@@ -49,12 +56,23 @@ public class FistAnimations : MonoBehaviour {
         }
     }
 
+    public void Defend() {
+        if (attackCoolDown <= 0) {
+            if (allowAttack) {
+                fists[0].GetComponent<Fists>().Defends();
+                fists[1].GetComponent<Fists>().Defends();
+            }
+        }
+    }
+
     public void Grab() {
         if(attackCoolDown <= 0) {
             if (allowAttack) {
                 fists[0].GetComponent<Fists>().Grabs(GetComponent<Dash>().target);
                 fists[1].GetComponent<Fists>().Grabs(GetComponent<Dash>().target);
+                attackCoolDown = setGrabCooldDOwn;
             }
+
         }
     }
 

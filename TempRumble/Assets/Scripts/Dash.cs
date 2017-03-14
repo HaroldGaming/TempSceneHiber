@@ -56,12 +56,10 @@ public class Dash : MonoBehaviour {
 
     void CheckForLookAt() {
         if (Physics.Raycast(transform.position, Vector3.forward, rayDistance)) {
-            print("rayhit");
             //StopCoroutine(Rotate());
         }
         else {
             if (!rotating) {
-                print("rotate");
                 StartCoroutine(Rotate());
             }
 
@@ -69,7 +67,6 @@ public class Dash : MonoBehaviour {
     }
 
     IEnumerator Rotate() {
-        print("rotating");
         yield return new WaitForSeconds(rotateDelay);
         rotating = true;
 
@@ -84,7 +81,6 @@ public class Dash : MonoBehaviour {
         time = dashTime;
         switch (leftRight) {
             case 0:
-                print("dash left");
                 //transform.RotateAround(GameObject.FindGameObjectWithTag("Player2").transform.position, Vector3.up, +dashRange);
                 dashingLeft = true;
                 break;
