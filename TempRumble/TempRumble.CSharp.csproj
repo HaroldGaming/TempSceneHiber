@@ -66,11 +66,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\New\PlayerAttack.cs" />
-    <Compile Include="Assets\Scripts\New\PlayerDash.cs" />
-    <Compile Include="Assets\Scripts\New\PlayerDefense.cs" />
-    <Compile Include="Assets\Scripts\New\PlayerHealth.cs" />
-    <Compile Include="Assets\Scripts\New\PlayerInput.cs" />
+    <Compile Include="Assets\Scripts\New\Player\Attacks\HeavyAttack.cs" />
+    <Compile Include="Assets\Scripts\New\Player\Attacks\LightAttack.cs" />
+    <Compile Include="Assets\Scripts\New\Player\Attacks\MediumAttack.cs" />
+    <Compile Include="Assets\Scripts\New\Player\PlayerAttack.cs" />
+    <Compile Include="Assets\Scripts\New\Player\PlayerDash.cs" />
+    <Compile Include="Assets\Scripts\New\Player\PlayerDefense.cs" />
+    <Compile Include="Assets\Scripts\New\Player\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\New\Player\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Old\AI.cs" />
     <Compile Include="Assets\Scripts\Old\Bars.cs" />
     <Compile Include="Assets\Scripts\Old\Dash.cs" />

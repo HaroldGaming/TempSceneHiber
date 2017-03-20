@@ -3,12 +3,14 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public int health;
+    public bool invulnerable;
+
+
+    void Start () {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}

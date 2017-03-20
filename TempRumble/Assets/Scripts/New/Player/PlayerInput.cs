@@ -8,7 +8,10 @@ public class PlayerInput : MonoBehaviour {
     private PlayerDash playerDashClass;
 
 	void Start () {
-	
+        playerAttackClass = GetComponent<PlayerAttack>();
+        playerDefenseClass = GetComponent<PlayerDefense>();
+        playerDashClass = GetComponent<PlayerDash>();
+
 	}
 	
 	void Update () {
