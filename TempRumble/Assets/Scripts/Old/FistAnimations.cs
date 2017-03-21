@@ -86,7 +86,7 @@ public class FistAnimations : MonoBehaviour {
                 else {
                     fist = 0;
                 }
-                GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Bars>().GetDamage(totalDamage);
+               // GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Bars>().GetDamage(totalDamage);
                 attackCoolDown = setAttackCoolDown;
             }
         }     

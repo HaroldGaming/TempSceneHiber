@@ -25,11 +25,6 @@ public class Bars : MonoBehaviour {
         }
     }
 
-    public void GetDamage(float damage) {
-        health -= damage;
-        StartBar(maxhealth, health, true);
-    }
-
     public void StartBar(float maxAmount, float CurrentAmount, bool reduce) {//when you want to activate the bar changer start it by giving a value of the max amount (max health, max mana ect.) and the currentAmount ( current health, current mana ect.)
         StopCoroutine(ChangeBar(0, 0, reduce));
         StartCoroutine(ChangeBar(maxAmount, CurrentAmount, reduce));

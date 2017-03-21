@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PlayerDash : MonoBehaviour {
 
-    public float dashSpeed, dashRange, dashCooldown, time;
+    public float dashSpeed, dashRange, dashCooldown;
+    private float time;
     private bool dashingRight, dashingLeft;
     private Transform target;
     private string saveTag;
