@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour {
     public int damage;
     public float chargeDamage, increaseDamagePerSecond;
     private bool isCharging;
+    private Transform target;
 
     public void NormalAttack(int damage) {
 

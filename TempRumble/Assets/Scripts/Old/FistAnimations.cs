@@ -6,12 +6,11 @@ public class FistAnimations : MonoBehaviour {
     public GameObject[] fists;
     public bool charging, allowAttack;
     public int spinSpeed;
-    public float setAttackCoolDown, setGrabCooldDOwn, setDefendCoolDown, damage;
+    public float setAttackCoolDown, setGrabCooldDOwn, setDefendCoolDown;
     private int fist;
-    private float attackCoolDown, chargeDamage;
+    private float attackCoolDown;
 
     void Start() {
-        chargeDamage = damage;
         allowAttack = true;
     }
     void Update() {
@@ -19,8 +18,6 @@ public class FistAnimations : MonoBehaviour {
             allowAttack = false;
             ChargeAttack(true);
             charging = true;
-            print("charging");
-            //print(chargeDamage);
         }
         else {
             if (charging) {
@@ -29,8 +26,7 @@ public class FistAnimations : MonoBehaviour {
             }
 
             if (Input.GetButtonDown("Fire1")) {
-                Attack(damage);
-                print("Attack");
+                Attack();
             }
         }
 
@@ -46,12 +42,10 @@ public class FistAnimations : MonoBehaviour {
             if (charge) {
                 fists[fist].transform.Rotate(Vector3.forward, spinSpeed * Time.deltaTime);
                 fists[fist].transform.position = fists[fist].GetComponent<Fists>().backObject.transform.position;
-                chargeDamage *= 1.1F;
             }
             else {
                 allowAttack = true;
-                Attack(chargeDamage);
-                chargeDamage = damage;
+                Attack();
             }
         }
     }
@@ -76,7 +70,7 @@ public class FistAnimations : MonoBehaviour {
         }
     }
 
-    public void Attack(float totalDamage) {
+    public void Attack() {
         if (attackCoolDown <= 0) {
             if (allowAttack) {
                 fists[fist].GetComponent<Fists>().Attacks();
@@ -86,7 +80,6 @@ public class FistAnimations : MonoBehaviour {
                 else {
                     fist = 0;
                 }
-               // GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Bars>().GetDamage(totalDamage);
                 attackCoolDown = setAttackCoolDown;
             }
         }     

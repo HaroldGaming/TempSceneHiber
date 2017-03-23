@@ -1,0 +1,15 @@
+Fixes
+-HP bar (waar je al mee bezig was)
+
+Attack ontvangen
+De speler die geraakt word moet na het ontvangen van de klap tijdelijk uitgeschakelt zijn.
+
+quick attack 0.3 seconden heavy attack 1 seconden
+
+Tijdens deze tijd kan de speler niet aanvallen of grijpen, alleen Verdedigen. 
+
+Hit confirmation
+-2 animaties voor geraakt worden (voor quick attack en heavy attack met de juiste timing)
+-particle effect
+-stutter (streetfighter)
+
