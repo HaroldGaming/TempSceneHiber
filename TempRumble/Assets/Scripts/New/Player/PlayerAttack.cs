@@ -28,6 +28,19 @@ public class PlayerAttack : MonoBehaviour {
 
     }
 
+    public void SetTarget() {
+        if (transform.tag == "Player1") {
+            target = GameObject.FindGameObjectWithTag("Player2").transform;
+        }
+        else {
+            target = GameObject.FindGameObjectWithTag("Player1").transform;
+        }
+    }
+
+    void DoDamage() {
+        //target.GetComponent<PlayerHealth>
+    }
+
     IEnumerator AttackIsCharging() {
         chargeDamage *= increaseDamagePerSecond;
         yield return new WaitForSeconds(1);

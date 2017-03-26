@@ -45,12 +45,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AI.cs" />
-     <Compile Include="Assets\Scripts\Bars.cs" />
-     <Compile Include="Assets\Scripts\Dash.cs" />
-     <Compile Include="Assets\Scripts\FightControll.cs" />
-     <Compile Include="Assets\Scripts\FistAnimations.cs" />
-     <Compile Include="Assets\Scripts\Fists.cs" />
+     <Compile Include="Assets\Scripts\New\Player\Attacks\HeavyAttack.cs" />
+     <Compile Include="Assets\Scripts\New\Player\Attacks\LightAttack.cs" />
+     <Compile Include="Assets\Scripts\New\Player\Attacks\MediumAttack.cs" />
+     <Compile Include="Assets\Scripts\New\Player\PlayerAttack.cs" />
+     <Compile Include="Assets\Scripts\New\Player\PlayerDash.cs" />
+     <Compile Include="Assets\Scripts\New\Player\PlayerDefense.cs" />
+     <Compile Include="Assets\Scripts\New\Player\PlayerHealth.cs" />
+     <Compile Include="Assets\Scripts\New\Player\PlayerInput.cs" />
+     <Compile Include="Assets\Scripts\Old\AI.cs" />
+     <Compile Include="Assets\Scripts\Old\Bars.cs" />
+     <Compile Include="Assets\Scripts\Old\Dash.cs" />
+     <Compile Include="Assets\Scripts\Old\FightControll.cs" />
+     <Compile Include="Assets\Scripts\Old\FistAnimations.cs" />
+     <Compile Include="Assets\Scripts\Old\Fists.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/_Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
