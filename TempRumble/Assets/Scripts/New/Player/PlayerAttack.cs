@@ -4,16 +4,18 @@ using System.Collections;
 public class PlayerAttack : MonoBehaviour {
 
     public int damage;
-    public float chargeDamage, increaseDamagePerSecond;
+    public float increaseDamagePerSecond;
+    private float chargeDamage;
     private bool isCharging;
     private Transform target;
 
-    public void NormalAttack(int damage) {
-
+    public void NormalAttack(int damages) {
+        target.GetComponent<PlayerHealth>().GetDamage(damages);
     }
 
     public void CharageAttack() {
         if (isCharging) {
+            StopCoroutine(AttackIsCharging());
             NormalAttack((int)chargeDamage);
             chargeDamage = damage;
             isCharging = false;
@@ -35,10 +37,6 @@ public class PlayerAttack : MonoBehaviour {
         else {
             target = GameObject.FindGameObjectWithTag("Player1").transform;
         }
-    }
-
-    void DoDamage() {
-        //target.GetComponent<PlayerHealth>
     }
 
     IEnumerator AttackIsCharging() {

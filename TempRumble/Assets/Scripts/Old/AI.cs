@@ -3,11 +3,11 @@ using System.Collections;
 
 public class AI : MonoBehaviour {
 
-    private Dash dashClass;
+    private PlayerDash dashClass;
     public float dashTime;
 
 	void Start () {
-        dashClass = GetComponent<Dash>();
+        dashClass = GetComponent<PlayerDash>();
         StartCoroutine(Dashing(0));
 	}
 

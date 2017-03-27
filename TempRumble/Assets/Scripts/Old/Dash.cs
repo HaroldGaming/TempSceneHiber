@@ -3,9 +3,8 @@ using System.Collections;
 
 public class Dash : MonoBehaviour {
 
-    public float dashTime, dashSpeed, rotateDelay, rayDistance, rotateSpeed, rotateCoolDown;
-    private float time;
-    private bool dashingRight, dashingLeft, rotating;
+    public float rotateDelay, rayDistance, rotateSpeed, rotateCoolDown;
+    private bool rotating;
     public Transform target;
    // private RaycastHit hit;
     private string saveTag;
@@ -24,26 +23,6 @@ public class Dash : MonoBehaviour {
     }
 
     void Update() {
-        if (dashingRight) {
-            transform.RotateAround(target.position, Vector3.up, +dashSpeed * Time.deltaTime);
-        }
-        else {
-
-        }
-
-        if (dashingLeft){
-            transform.RotateAround(target.position, Vector3.up, -dashSpeed * Time.deltaTime);
-        }
-
-        if(time >= 0) {
-            time -= Time.deltaTime;
-
-        }
-        else {
-            dashingRight = false;
-            dashingLeft = false;
-        }
-
         CheckForLookAt();
         if (rotating){
             Vector3 pos = target.position - transform.position;
@@ -75,20 +54,6 @@ public class Dash : MonoBehaviour {
         rotating = false;
 
         //StartCoroutine(Rotate());
-    }
-
-    public void Dasher(int leftRight) {
-        time = dashTime;
-        switch (leftRight) {
-            case 0:
-                //transform.RotateAround(GameObject.FindGameObjectWithTag("Player2").transform.position, Vector3.up, +dashRange);
-                dashingLeft = true;
-                break;
-            case 1:
-                //transform.RotateAround(GameObject.FindGameObjectWithTag("Player2").transform.position, Vector3.up, -dashRange);
-                dashingRight = true;
-                break;
-        }
     }
 
     IEnumerator Dashing() {

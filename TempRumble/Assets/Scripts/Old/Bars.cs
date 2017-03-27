@@ -6,23 +6,15 @@ public class Bars : MonoBehaviour {
 
     public Image imageBar;
     public float fillSpeed;
-    public float health, maxhealth;
+   // public float health, maxhealth;
     private float saveDamage;
     private bool alreadyMoving;
     private int counter;
 
 
     void Start() {
-        health = maxhealth;
-        imageBar = GetComponent<Image>();// place the class on the image you want to be the bar and it will asign itself.
-    }
-
-    void Update() {// remove later, no update needed
-
-        if (Input.GetButtonDown("Fire2")) {
-            StartCoroutine(ChangeBar(maxhealth, maxhealth, false));
-            health = maxhealth;
-        }
+      //  health = maxhealth;
+       // imageBar = GetComponent<Image>();// place the class on the image you want to be the bar and it will asign itself.
     }
 
     public void StartBar(float maxAmount, float CurrentAmount, bool reduce) {//when you want to activate the bar changer start it by giving a value of the max amount (max health, max mana ect.) and the currentAmount ( current health, current mana ect.)
