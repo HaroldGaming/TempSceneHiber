@@ -4,17 +4,26 @@ using System.Collections;
 public class AI : MonoBehaviour {
 
     private PlayerDash dashClass;
-    public float dashTime;
+    private PlayerAttack attackClass;
+    public float dashTime, attackTime;
+    public int damage;
 
 	void Start () {
         dashClass = GetComponent<PlayerDash>();
-        StartCoroutine(Dashing(0));
-	}
+        attackClass = GetComponent<LightAttack>();
+        StartCoroutine(Dashing(1));
+    }
+
+    IEnumerator Attacking(int damage) {        
+        yield return new WaitForSeconds(attackTime);
+        attackClass.NormalAttack(damage);
+        StartCoroutine(Dashing(Random.Range(0, 2)));
+    }
 
     IEnumerator Dashing(int leftRight) {
-        dashClass.Dasher(leftRight);
         yield return new WaitForSeconds(dashTime);
-        leftRight = Random.Range(0, 2);
-        StartCoroutine(Dashing(leftRight));
+        dashClass.Dasher(leftRight);
+        print("dashed");
+        StartCoroutine(Attacking(damage));       
     }
 }

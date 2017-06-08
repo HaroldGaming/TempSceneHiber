@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerDash : MonoBehaviour {
 
-    public float dashSpeed, dashRange, dashCooldown;
+    public float dashSpeed, dashTime;
     private float time;
     private bool dashingRight, dashingLeft;
     private Transform target;
@@ -21,15 +21,16 @@ public class PlayerDash : MonoBehaviour {
     }
 
 	void Update () {
+        transform.LookAt(target);//make something better for this later
         if (dashingRight) {
-            transform.RotateAround(target.position, Vector3.up, +dashSpeed * Time.deltaTime);
+            transform.RotateAround(target.position, Vector3.up, -dashSpeed * Time.deltaTime);
         }
         else {
 
         }
 
         if (dashingLeft) {
-            transform.RotateAround(target.position, Vector3.up, -dashSpeed * Time.deltaTime);
+            transform.RotateAround(target.position, Vector3.up, +dashSpeed * Time.deltaTime);
         }
 
         if (time >= 0) {
@@ -43,7 +44,7 @@ public class PlayerDash : MonoBehaviour {
     }
 
     public void Dasher(int leftRight) {
-        time = dashCooldown;
+        time = dashTime;
 
         switch (leftRight) {
             case 0:

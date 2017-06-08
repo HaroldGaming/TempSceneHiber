@@ -66,6 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\New\Particles\DestroySelf.cs" />
     <Compile Include="Assets\Scripts\New\Player\Attacks\HeavyAttack.cs" />
     <Compile Include="Assets\Scripts\New\Player\Attacks\LightAttack.cs" />
     <Compile Include="Assets\Scripts\New\Player\Attacks\MediumAttack.cs" />

@@ -3,27 +3,22 @@ using System.Collections;
 
 public class PlayerAttack : MonoBehaviour {
 
-    public int damage;
     public float increaseDamagePerSecond;
     private float chargeDamage;
-    private bool isCharging;
+    public float damage;
     private Transform target;
 
-    public void NormalAttack(int damages) {
-        target.GetComponent<PlayerHealth>().GetDamage(damages);
+    public void NormalAttack(float damages) {
+        target.GetComponent<PlayerHealth>().GetDamage((int)damages);
+        print("Normal");
+        print(damage);
     }
 
-    public void CharageAttack() {
-        if (isCharging) {
-            StopCoroutine(AttackIsCharging());
-            NormalAttack((int)chargeDamage);
-            chargeDamage = damage;
-            isCharging = false;
-        }
-        else {
-            StartCoroutine(AttackIsCharging());
-            isCharging = true;
-        }
+    public void CharageAttack(float damage, float chargeTime) {
+        damage += (chargeTime * increaseDamagePerSecond);
+        target.GetComponent<PlayerHealth>().GetDamage((int)damage);
+        print("Chaaaarge");
+        print(damage);
     }
 
     public void GrabAttack() {
@@ -37,11 +32,5 @@ public class PlayerAttack : MonoBehaviour {
         else {
             target = GameObject.FindGameObjectWithTag("Player1").transform;
         }
-    }
-
-    IEnumerator AttackIsCharging() {
-        chargeDamage *= increaseDamagePerSecond;
-        yield return new WaitForSeconds(1);
-        StartCoroutine(AttackIsCharging());
     }
 }

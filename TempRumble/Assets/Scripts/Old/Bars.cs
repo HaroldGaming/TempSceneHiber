@@ -37,8 +37,8 @@ public class Bars : MonoBehaviour {
             currentFill += 0.05F * fillSpeed * Time.deltaTime;
         }
 
-        print(currentFill);
-        print(newFill);
+       // print(currentFill);
+       // print(newFill);
         imageBar.fillAmount = currentFill;
 
         yield return new WaitForSeconds(0);
@@ -64,6 +64,10 @@ public class Bars : MonoBehaviour {
             else {
                 print(counter);
                 StartCoroutine(ChangeBar(maxAmount, currentAmount, reduce));
+            }
+
+            if(newFill <= 0) {
+                StopCoroutine(ChangeBar(0, 0, reduce));
             }
         }
     }

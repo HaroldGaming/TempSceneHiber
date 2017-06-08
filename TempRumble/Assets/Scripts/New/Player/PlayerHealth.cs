@@ -17,7 +17,18 @@ public class PlayerHealth : MonoBehaviour {
 
     public void GetDamage(int damage) {
         health -= damage;
-        healthBar.StartBar(maxHealth, health, true);
-        Instantiate(damagePartical, transform.position, transform.rotation);//remove later
+        if(health <= 0) {
+            health = 0;
+        }
+        else {
+            healthBar.StartBar(maxHealth, health, true);
+            Instantiate(damagePartical, transform.position, (damagePartical.transform.localRotation));//remove later
+        }
+
+    }
+
+    public void FullHealth() {
+        health = maxHealth;
+        healthBar.StartBar(maxHealth, health, false);
     }
 }
