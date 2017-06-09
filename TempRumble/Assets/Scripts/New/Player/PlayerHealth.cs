@@ -16,13 +16,15 @@ public class PlayerHealth : MonoBehaviour {
 	}
 
     public void GetDamage(int damage) {
-        health -= damage;
-        if(health <= 0) {
-            health = 0;
-        }
-        else {
-            healthBar.StartBar(maxHealth, health, true);
-            Instantiate(damagePartical, transform.position, (damagePartical.transform.localRotation));//remove later
+        if (!invulnerable) {
+            health -= damage;
+            if (health <= 0) {
+                health = 0;
+            }
+            else {
+                healthBar.StartBar(maxHealth, health, true);
+                Instantiate(damagePartical, transform.position, (damagePartical.transform.localRotation));//remove later
+            }
         }
 
     }

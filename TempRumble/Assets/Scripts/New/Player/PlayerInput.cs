@@ -28,7 +28,6 @@ public class PlayerInput : MonoBehaviour {
         if (allowInput) {
             if (Input.GetButton("Fire1")) {
                 checkForCharge += 1 * Time.deltaTime;
-                print(checkForCharge);
             }
 
 
@@ -60,15 +59,16 @@ public class PlayerInput : MonoBehaviour {
                                 break;
                         }
                     }
-                }
-                allowInput = false;
+                }             
                 StartCoroutine(WaitBeforeInput(inputCoolDown));
                 checkForCharge = 0;
             }
         }
     }
 
-    IEnumerator WaitBeforeInput(float inputCoolDown) {
+    public IEnumerator WaitBeforeInput(float inputCoolDown) {
+        print("Cant input");
+        allowInput = false;
         yield return new WaitForSeconds(inputCoolDown);
         allowInput = true;
     }

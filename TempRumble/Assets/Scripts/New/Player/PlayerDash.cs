@@ -44,8 +44,9 @@ public class PlayerDash : MonoBehaviour {
         }
     }
 
-    IEnumerator WaitBeforeDash(float timeBeforeDash) {
-        print(timeBeforeDash);
+    public IEnumerator WaitBeforeDash(float timeBeforeDash) {
+        print("Cant dash");
+        allowDash = false;
         yield return new WaitForSeconds(timeBeforeDash);
         allowDash = true;
         StopCoroutine(WaitBeforeDash(0));
@@ -63,8 +64,7 @@ public class PlayerDash : MonoBehaviour {
                     dashingRight = true;
                     break;
             }          
-            StartCoroutine(WaitBeforeDash(dashTime + dashCoolDown));
-            allowDash = false;
+            StartCoroutine(WaitBeforeDash(dashTime + dashCoolDown));           
         }
     }
 }

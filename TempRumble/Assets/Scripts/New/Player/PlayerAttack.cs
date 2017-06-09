@@ -5,24 +5,24 @@ public class PlayerAttack : MonoBehaviour {
 
     public float increaseDamagePerSecond;
     private float chargeDamage;
-    public float damage;
+    public float damage, grabTime, grabDamage;
     private Transform target;
 
-    public void NormalAttack(float damages) {
+    public void NormalAttack(float damages) {//gives damage after a normal attack.
         target.GetComponent<PlayerHealth>().GetDamage((int)damages);
-        print("Normal");
-        print(damage);
     }
 
-    public void CharageAttack(float damage, float chargeTime) {
+    public void CharageAttack(float damage, float chargeTime) {//calculated charge damage
         damage += (chargeTime * increaseDamagePerSecond);
         target.GetComponent<PlayerHealth>().GetDamage((int)damage);
-        print("Chaaaarge");
-        print(damage);
     }
 
-    public void GrabAttack() {
-
+    public void GrabAttack() {//grab attack, disables to players abilitie to attack, dash and defend.
+        StartCoroutine(target.GetComponent<PlayerInput>().WaitBeforeInput(grabTime));
+        StartCoroutine(target.GetComponent<PlayerDash>().WaitBeforeDash(grabTime));
+        StartCoroutine(target.GetComponent<PlayerDefense>().WaitBeforeDefense(grabTime));
+        //insert grab animation stuff here, maybe a corountine that does the animation first and then the damage.
+        target.GetComponent<PlayerHealth>().GetDamage((int)grabDamage);
     }
 
     public void SetTarget() {
