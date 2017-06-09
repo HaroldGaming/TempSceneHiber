@@ -9,9 +9,12 @@ public class PlayerInput : MonoBehaviour {
     private PlayerDefense playerDefenseClass;
     private PlayerDash playerDashClass;
     public string attackClassString;
+    public float inputCoolDown;
     private float checkForCharge;
+    public bool allowInput;
 
 	void Start () {
+        allowInput = true;
         lightAttackClass = GetComponent<LightAttack>();
         mediumAttackClass = GetComponent<MediumAttack>();
         heavyAttackClass = GetComponent<HeavyAttack>();
@@ -22,43 +25,52 @@ public class PlayerInput : MonoBehaviour {
 
     void Update() {
 
-        if (Input.GetButton("Fire1")){
-            checkForCharge += 1 * Time.deltaTime;
-            print(checkForCharge);
-        }
-
-
-        if (Input.GetButtonUp("Fire1")) {
-            if(checkForCharge <= 1F) {
-                switch (attackClassString) {
-                    case "Light":
-                        LightAttack();
-                        break;
-                    case "Medium":
-                        MediumAttack();
-                        break;
-                    case "Heavy":
-                        HeavyAttack();
-                        break;
-                }
+        if (allowInput) {
+            if (Input.GetButton("Fire1")) {
+                checkForCharge += 1 * Time.deltaTime;
+                print(checkForCharge);
             }
-            else {
-                if (Input.GetButtonUp("Fire1")) {
+
+
+            if (Input.GetButtonUp("Fire1")) {
+                if (checkForCharge <= 1F) {
                     switch (attackClassString) {
                         case "Light":
-                            LightChargeAttack();
+                            LightAttack();
                             break;
                         case "Medium":
-                            MediumChargeAttack();
+                            MediumAttack();
                             break;
                         case "Heavy":
-                            HeavyChargeAttack();
+                            HeavyAttack();
                             break;
                     }
-                } 
+                }
+                else {
+                    if (Input.GetButtonUp("Fire1")) {
+                        switch (attackClassString) {
+                            case "Light":
+                                LightChargeAttack();
+                                break;
+                            case "Medium":
+                                MediumChargeAttack();
+                                break;
+                            case "Heavy":
+                                HeavyChargeAttack();
+                                break;
+                        }
+                    }
+                }
+                allowInput = false;
+                StartCoroutine(WaitBeforeInput(inputCoolDown));
+                checkForCharge = 0;
             }
-            checkForCharge = 0;
         }
+    }
+
+    IEnumerator WaitBeforeInput(float inputCoolDown) {
+        yield return new WaitForSeconds(inputCoolDown);
+        allowInput = true;
     }
 
     public void LightAttack() {

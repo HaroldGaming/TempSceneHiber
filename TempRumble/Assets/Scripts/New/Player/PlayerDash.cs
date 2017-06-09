@@ -3,14 +3,15 @@ using System.Collections;
 
 public class PlayerDash : MonoBehaviour {
 
-    public float dashSpeed, dashTime;
-    private float time;
-    private bool dashingRight, dashingLeft;
+    public float dashSpeed, dashTime, dashCoolDown;
+    private float timeWhileDash;
+    private bool dashingRight, dashingLeft, allowDash;
     private Transform target;
     private string saveTag;
 
     void Start() {
-        if (transform.tag == "Player1") {
+        allowDash = true;
+        if (transform.tag == "Player1") {//sets the right target.
             target = GameObject.FindGameObjectWithTag("Player2").transform;
             saveTag = "Player2";
         }
@@ -22,7 +23,7 @@ public class PlayerDash : MonoBehaviour {
 
 	void Update () {
         transform.LookAt(target);//make something better for this later
-        if (dashingRight) {
+        if (dashingRight) {//function makes the payer dash around its target
             transform.RotateAround(target.position, Vector3.up, -dashSpeed * Time.deltaTime);
         }
         else {
@@ -33,26 +34,37 @@ public class PlayerDash : MonoBehaviour {
             transform.RotateAround(target.position, Vector3.up, +dashSpeed * Time.deltaTime);
         }
 
-        if (time >= 0) {
-            time -= Time.deltaTime;
+        if (timeWhileDash >= 0) {
+            timeWhileDash -= Time.deltaTime;
 
         }
         else {
             dashingRight = false;
-            dashingLeft = false;
+            dashingLeft = false;                       
         }
     }
 
-    public void Dasher(int leftRight) {
-        time = dashTime;
+    IEnumerator WaitBeforeDash(float timeBeforeDash) {
+        print(timeBeforeDash);
+        yield return new WaitForSeconds(timeBeforeDash);
+        allowDash = true;
+        StopCoroutine(WaitBeforeDash(0));
+    }
 
-        switch (leftRight) {
-            case 0:
-                dashingLeft = true;
-                break;
-            case 1:
-                dashingRight = true;
-                break;
+    public void Dasher(int leftRight) { // Checks the input to dash left or right
+        if (allowDash) {
+            timeWhileDash = dashTime;
+
+            switch (leftRight) {
+                case 0:
+                    dashingLeft = true;
+                    break;
+                case 1:
+                    dashingRight = true;
+                    break;
+            }          
+            StartCoroutine(WaitBeforeDash(dashTime + dashCoolDown));
+            allowDash = false;
         }
     }
 }
