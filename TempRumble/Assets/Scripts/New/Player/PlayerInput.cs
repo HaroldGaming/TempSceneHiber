@@ -27,7 +27,7 @@ public class PlayerInput : MonoBehaviour {
 
         if (allowInput) {
             if (Input.GetButton("Fire1")) {
-                checkForCharge += 1 * Time.deltaTime;
+                checkForCharge += 1 * Time.deltaTime;                
             }
 
 
@@ -62,6 +62,7 @@ public class PlayerInput : MonoBehaviour {
                 }             
                 StartCoroutine(WaitBeforeInput(inputCoolDown));
                 checkForCharge = 0;
+                GetComponent<FistAnimationV2>().ChargeAttack(false);
             }
         }
     }
