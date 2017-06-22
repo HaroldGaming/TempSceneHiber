@@ -16,6 +16,7 @@ public class AI : MonoBehaviour {
 
     IEnumerator Attacking(int damage) {        
         yield return new WaitForSeconds(attackTime);
+        GetComponent<FistAnimationV2>().Attack();
         attackClass.NormalAttack(damage);
         StartCoroutine(Dashing(Random.Range(0, 2)));
     }

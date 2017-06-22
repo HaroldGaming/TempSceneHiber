@@ -27,7 +27,8 @@ public class PlayerInput : MonoBehaviour {
 
         if (allowInput) {
             if (Input.GetButton("Fire1")) {
-                checkForCharge += 1 * Time.deltaTime;                
+                checkForCharge += 1 * Time.deltaTime;
+                GetComponent<FistAnimationV2>().ChargeAttack(true);
             }
 
 
